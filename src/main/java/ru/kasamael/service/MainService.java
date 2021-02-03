@@ -4,7 +4,7 @@ import com.github.kiulian.downloader.YoutubeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kasamael.model.dto.AudioDTO;
-import ru.kasamael.model.dto.AudioDownloadRequestDTO;
+import ru.kasamael.model.dto.TrackDownloadRequestDTO;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -46,8 +46,8 @@ public class MainService {
     /**
      * Получение аудио файла по урлу
      */
-    public byte[] getAudioFile(AudioDownloadRequestDTO audioDownloadRequestDTO) throws IOException, YoutubeException {
-        File audioFile = this.extractVideoIdFromUrlAndDownloadAudioFile(audioDownloadRequestDTO.getUrl());
+    public byte[] getTrackFile(TrackDownloadRequestDTO trackDownloadRequestDTO) throws IOException, YoutubeException {
+        File audioFile = this.extractVideoIdFromUrlAndDownloadAudioFile(trackDownloadRequestDTO.getUrl());
         try (InputStream inputStream = new FileInputStream(audioFile); ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             byte[] buf = new byte[512];
             while (inputStream.read(buf) != -1) {
